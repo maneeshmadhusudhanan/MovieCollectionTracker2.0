@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT License - Maneesh Madhusudhanan</title>
+    <style>
+        :root {
+            --primary-accent: #2B6CB0;    /* Navy blue accent */
+            --secondary-accent: #2C7A7B;  /* Teal accent */
+            --gradient-start: #2B6CB0;
+            --gradient-end: #4299E1;
+            --animation-duration: 0.3s;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f4f8;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(43, 108, 176, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(44, 122, 123, 0.07) 0%, transparent 20%);
+        }
+        
+        .license-container {
+            max-width: 800px;
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform var(--animation-duration), box-shadow var(--animation-duration);
+        }
+        
+        .license-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .license-header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .license-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 4px);
+            pointer-events: none;
+        }
+        
+        .license-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .license-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .license-actions {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem 2rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .license-content {
+            padding: 2rem;
+        }
+        
+        .copyright-section {
+            margin-bottom: 2rem;
+        }
+        
+        .copyright-section h3 {
+            color: var(--primary-accent);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .copyright-section h3::before {
+            content: "©";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--primary-accent);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .license-text {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .highlight-block {
+            display: block;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary-accent);
+            background: #f7fafc;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .signature-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            transition: background-color var(--animation-duration);
+        }
+        
+        .signature-section:hover {
+            background-color: #f7fafc;
+        }
+        
+        .signature-section h3 {
+            color: var(--primary-accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .signature-section h3::before {
+            content: "✍️";
+            font-size: 20px;
+        }
+        
+        .signature-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #cbd5e0, transparent);
+            margin: 1.5rem 0;
+        }
+        
+        .signature-row {
+            display: flex;
+            justify-content: space-between;
+            color: #718096;
+        }
+        
+        #signaturePad {
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin: 1rem 0;
+            background: #fff;
+            cursor: crosshair;
+        }
+        
+        .signature-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .disclaimer-section {
+            background: #fff5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #f56565;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .disclaimer-section::before {
+            content: "!";
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 24px;
+            height: 24px;
+            background: #f56565;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+        
+        .disclaimer-section h3 {
+            color: #c53030;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .license-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        /* Animation for watermark */
+        .watermark {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            right: -200px;
+            opacity: 0.02;
+            pointer-events: none;
+            border: 15px solid var(--primary-accent);
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all var(--animation-duration);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: var(--gradient-end);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #cbd5e0;
+            color: #4a5568;
+        }
+        
+        .btn-secondary:hover {
+            background: #a0aec0;
+            box-shadow: 0 4px 12px rgba(160, 174, 192, 0.3);
+        }
+        
+        /* Date picker styling */
+        .date-input {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background: #2B6CB0;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(-100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Animation effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 26px;
+            border-radius: 13px;
+            background: #cbd5e0;
+            cursor: pointer;
+            transition: all var(--animation-duration);
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+        }
+        
+        .theme-toggle::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            left: 3px;
+            transition: all var(--animation-duration);
+        }
+        
+        .theme-toggle.dark::after {
+            left: 27px;
+        }
+        
+        .theme-toggle.dark {
+            background: #4a5568;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #1a202c;
+        }
+        
+        body.dark-mode .license-container {
+            background: #2d3748;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        body.dark-mode .license-actions {
+            background: #2d3748;
+            border-bottom: 1px solid #4a5568;
+        }
+        
+        body.dark-mode .license-text,
+        body.dark-mode .signature-row,
+        body.dark-mode #dateField {
+            color: #e2e8f0;
+        }
+        
+        body.dark-mode .highlight-block {
+            background: #2d3748;
+            border-left: 4px solid var(--secondary-accent);
+        }
+        
+        body.dark-mode .disclaimer-section {
+            background: #3d2329;
+        }
+        
+        body.dark-mode .license-footer {
+            background: #2d3748;
+            border-top: 1px solid #4a5568;
+            color: #a0aec0;
+        }
+        
+        body.dark-mode #signaturePad {
+            background: #2d3748;
+            border-color: #4a5568;
+        }
+        
+        /* For screens smaller than 600px */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .license-header h1 {
+                font-size: 2rem;
+            }
+            
+            .signature-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="license-container">
+        <div class="license-header">
+            <h1>MIT License</h1>
+            <p>Software License Agreement</p>
+        </div>
+        
+        <div class="license-actions">
+            <button class="btn" id="downloadBtn">
+                <span>📄</span> Download License
+            </button>
+        </div>
+        
+        <div class="license-content">
+            <div class="copyright-section animate-in">
+                <h3>Copyright © 2025 MANEESH MADHUSUDHANAN</h3>
+                <div class="license-text">
+                    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+                    
+                    <div class="highlight-block">
+                        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="signature-section animate-in delay-1">
+                <h3>Digital Signature</h3>
+                <canvas id="signaturePad" width="100%" height="150"></canvas>
+                <div class="signature-controls">
+                    <button id="clearSignature" class="btn btn-secondary">Clear</button>
+                </div>
+                <div class="signature-divider"></div>
+                <div class="signature-row">
+                    <span id="nameDisplay">Authorized Signature</span>
+                    <span>Date: <input type="date" id="dateField" class="date-input"></span>
+                </div>
+            </div>
+            
+            <div class="disclaimer-section animate-in delay-2">
+                <h3>Disclaimer</h3>
+                <p class="license-text">
+                    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                </p>
+            </div>
+        </div>
+        
+        <div class="license-footer animate-in delay-3">
+            <p>This license is MIT compliant and contains all required provisions.</p>
+            <p style="margin-top: 0.5rem;">Generated for project documentation</p>
+        </div>
+        
+        <div class="watermark"></div>
+    </div>
+    
+    <div class="theme-toggle" id="themeToggle"></div>
+    
+    <div class="toast" id="toast">
+        <span>✅</span>
+        <span id="toastMessage">License saved successfully!</span>
+    </div>
+
+    <script>
+        // Initialize current date in the date field
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            document.getElementById('dateField').value = `${year}-${month}-${day}`;
+            
+            // Initialize canvas size
+            resizeCanvas();
+        });
+
+        // Signature Pad functionality
+        let canvas = document.getElementById('signaturePad');
+        let ctx = canvas.getContext('2d');
+        let drawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.offsetWidth - 10;
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = document.body.classList.contains('dark-mode') ? '#e2e8f0' : '#2B6CB0';
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch support
+        canvas.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        canvas.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        canvas.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            const mouseEvent = new MouseEvent('mouseup');
+            canvas.dispatchEvent(mouseEvent);
+        });
+        
+        function startDrawing(e) {
+            drawing = true;
+            const rect = canvas.getBoundingClientRect();
+            lastX = e.clientX - rect.left;
+            lastY = e.clientY - rect.top;
+        }
+        
+        function draw(e) {
+            if (!drawing) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            
+            lastX = x;
+            lastY = y;
+            
+            // Update the name display
+            document.getElementById('nameDisplay').textContent = 'Authorized Signature ✓';
+        }
+        
+        function stopDrawing() {
+            drawing = false;
+        }
+        
+        document.getElementById('clearSignature').addEventListener('click', function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('nameDisplay').textContent = 'Authorized Signature';
+        });
+        
+        // Download functionality
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            // Check if signature is present
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            let hasSignature = false;
+            
+            for (let i = 0; i < imageData.length; i += 4) {
+                if (imageData[i + 3] > 0) {
+                    hasSignature = true;
+                    break;
+                }
+            }
+            
+            if (!hasSignature) {
+                showToast('❌ Please add your signature before downloading');
+                return;
+            }
+            
+            // Convert signature to image
+            const signatureImg = canvas.toDataURL();
+            
+            // Create the document
+            const date = document.getElementById('dateField').value;
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Create HTML content for download
+            let downloadContent = document.documentElement.outerHTML;
+            
+            // Create and download the file
+            const blob = new Blob([downloadContent], {type: 'text/html'});
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'MIT_License_' + new Date().toISOString().split('T')[0] + '.html';
+            link.click();
+            
+            showToast('✅ License downloaded successfully!');
+        });
+        
+        // Toast notification function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.classList.toggle('dark');
+            
+            // Update canvas stroke color for dark mode
+            ctx.strokeStyle = document.body.classList.contains('dark-mode') ? '#e2e8f0' : '#2B6CB0';
+        });
+    </script>
+</body>
+</html>
+
+
+<!--MIT License
+
+Copyright (c) 2025 MANEESH MADHUSUDHANAN
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. -->
